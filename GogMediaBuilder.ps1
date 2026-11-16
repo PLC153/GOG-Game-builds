@@ -15,7 +15,7 @@ function Get-GameFiles {
 
 function Assert-SafeText([string]$Value, [string]$Field) {
     if ([string]::IsNullOrWhiteSpace($Value)) { throw "$Field is required." }
-    if ($Value.IndexOfAny([char[]]'&|<>^!%') -ge 0 -or $Value.Contains("`r") -or $Value.Contains("`n")) { throw "$Field contains a character that cannot be used safely in this launcher: & | < > ^ ! %" }
+    if ($Value.IndexOfAny([char[]]'&|<>^!%"') -ge 0 -or $Value.Contains("`r") -or $Value.Contains("`n")) { throw ('{0} contains a character that cannot be used safely in this launcher: & | < > ^ ! % "' -f $Field) }
 }
 
 function Write-GameFinder([string]$Destination) {
